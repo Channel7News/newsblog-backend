@@ -1,20 +1,15 @@
 const express = require("express");
 const serverless = require("serverless-http");
 const fetch = require("node-fetch");
-
 const app = express();
+const bodyParser = require('body-parser')
 
-// Local development and port selection
-// const port = process.env.PORT || 4000;
-// app.listen(port, () => {
-//   console.log(`Listening on port ${port}`);
-// });
 
 // Router
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.json({
+  res.status(200).json({
     "Hi": "Welcome to the Channel 7 News API"
   });
 });
@@ -38,7 +33,9 @@ router.get("/headlines/:category/:countryCode", (req, res) => {
     .then((data) => res.send(data));
 });
 
+app.use(bodyParser.json())
 // Tell the Netlify app to use the Router
-app.use("/.netlify/functions/api", router);
+app.use("/.netlify/functions/server", router);
 
+module.exports = app;
 module.exports.handler = serverless(app);

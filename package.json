@@ -2,16 +2,17 @@
   "name": "reackathon-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "functions/server.js",
   "scripts": {
-    "start": "./node_modules/.bin/netlify-lambda serve src",
-    "build": "./node_modules/.bin/netlify-lambda build src",
+    "start": "netlify-lambda serve src",
+    "build": "netlify-lambda build src",
     "dev": "nodemon ./src/api.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "netlify-lambda": "^2.0.10",
     "node-fetch": "^2.6.1",
